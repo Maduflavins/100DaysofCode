@@ -12,6 +12,9 @@ client = MongoClient("mongodb://:27017")
 db = client.SimDB
 users = db["Users"]
 
+# for admin
+admin = db["Admin"]
+
 
 def UserExist(username):
     if users.find({"Username":username}).count() == 0:
@@ -38,6 +41,52 @@ def countTokens(username):
     })[0]["Tokens"]
 
     return tokens
+
+def AdminExist(username):
+    if admin.find({"Username":username}).count() == 0:
+        return False
+    else:
+        return True
+
+
+def verifyAdminPw(username):
+    if not AdminExist:
+        return False
+    hashed_pw = admin.find({
+        "Username" : username
+    })[0]["Password"]
+
+    if bcrypt.hashpw(password.encode('utf8'), hashed_pw) == hashed_pw:
+        return True
+    else:
+        return False
+
+
+class RegisterAdmin(Resource):
+    def post(self):
+        postedData = request.get_json()
+        username = postedData["username"]
+        password = postedData["password"]
+
+        if AdminExist(username):
+            retJson={
+                "status code": 301,
+                "message": "Invalid username"
+            }
+            return jsonify(retJson)
+        
+        hashed_pw = bcrypt.hashpw(password.encode('utf8'), bcrypt.gensalt())
+
+        admin.insert({
+            "Username": username,
+            "Password": password
+        })
+
+        retJson = {
+            "status code": 200,
+            "message": "successfully registered"
+        }
+        return jsonify(retJson)
 
 class Register(Resource):
     def post(self):
@@ -71,7 +120,7 @@ class DetectSimilarity(Resource):
         postedData = request.get_json()
         username = postedData["username"]
         password = postedData["password"]
-        text1 = postedDat["text1"]
+        text1 = postedData["text1"]
         text2 = postedData["text2"]
 
         if not UserExist(username):
@@ -127,3 +176,55 @@ class DetectSimilarity(Resource):
         })
 
         return jsonify(retJson)
+
+
+class Refill(Resource):
+    def post(self):
+        postedData = request.get_json()
+
+        username = postedData["username"]
+        password = postedData["password"]
+        refill_amount = postedData["refill"]
+
+        if not AdminExist(username):
+            retJson = {
+                "status code": 301,
+                "message": "Invalid Usenrname"
+            }
+            return jsonify(retJson)
+        
+
+        
+        correct_pw = verifyAdminPw(username)
+
+        if not correct_pw:
+            retJson = {
+                "status code" : 304,
+                "message" : "Incorrect password"
+            }
+            return jsonify(retJson)
+        
+        current_tokens = countTokens(username)
+        users.update({
+            "Username": username
+        },{
+            "$set":{
+                "Tokens": current_tokens + refill_amount
+            }
+        })
+
+        retJson = {
+            "status code" : 200,
+            "message": "Refilled successfully"
+        }
+        return jsonify(retJson)
+
+
+api.add_resource(RegisterAdmin, '/admin')
+api.add_resource(Register, '/register')
+api.add_resource(DetectSimilarity, '/detect')
+api.add_resource(Refill, '/refil')
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0')
