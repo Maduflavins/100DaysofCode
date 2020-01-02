@@ -17,7 +17,8 @@ admin = db["Admin"]
 
 
 def UserExist(username):
-    if users.find({"Username":username}).count() == 0:
+    count =  db.users.find({"Username":username}).count()
+    if count <= 0:
         return False
     else:
         return True
@@ -26,7 +27,7 @@ def UserExist(username):
 def verifyPw(username, password):
     if not UserExist(username):
         return False
-    hashed_pw = users.find({
+    hashed_pw = db.users.find({
         "Username": username
     })[0]["Password"]
 
@@ -36,23 +37,23 @@ def verifyPw(username, password):
         return False
 
 def countTokens(username):
-    tokens = users.find({
+    tokens = db.users.find({
         "Username": username
     })[0]["Tokens"]
 
     return tokens
 
 def AdminExist(username):
-    if admin.find({"Username":username}).count() == 0:
+    if db.admin.find({"Username":username}).count() == 0:
         return False
     else:
         return True
 
 
-def verifyAdminPw(username):
+def verifyAdminPw(username, password):
     if not AdminExist:
         return False
-    hashed_pw = admin.find({
+    hashed_pw = db.admin.find({
         "Username" : username
     })[0]["Password"]
 
@@ -195,7 +196,7 @@ class Refill(Resource):
         
 
         
-        correct_pw = verifyAdminPw(username)
+        correct_pw = verifyAdminPw(username, password)
 
         if not correct_pw:
             retJson = {
