@@ -89,6 +89,29 @@ class RegisterAdmin(Resource):
         }
         return jsonify(retJson)
 
+
+class Register(Resource):
+    def post(self):
+        postedData = request.get_json()
+        username = postedData["username"]
+        password = postedData["password"]
+
+        if UserExist(username):
+            retJson = {
+                "status code": 301,
+                "message": "Invalid username"
+            }
+            return jsonify(retJson)
+        hashed_pw = bcrypt.hashpw(password.encode('utf8'), bcrypt.gensalt())
+        users.inser({
+            "Username": username,
+            "Password": hashed_pw
+        })
+        retJson = {
+            "status code": 200,
+            "message": "successfully registered"
+        }
+
         return jsonify(retJson)
 
 class DetectSimilarity(Resource):
