@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="011e89e8-5ab6-40de-b62e-5687edf9d17a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../similarityCheck/web/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/../similarityCheck/web/app.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,6 +91,14 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state width="1807" height="277" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1577912731658" />
+    <state x="654" y="219" key="com.intellij.ide.util.TipDialog" timestamp="1577963952328">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="654" y="219" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1577963952328" />
+    <state x="548" y="27" width="1372" height="796" key="new project wizard" timestamp="1577964117811">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="548" y="27" width="1372" height="796" key="new project wizard/67.27.1853.1053@67.27.1853.1053" timestamp="1577964117811" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

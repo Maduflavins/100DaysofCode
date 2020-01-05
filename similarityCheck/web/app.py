@@ -17,7 +17,7 @@ admin = db["Admin"]
 
 
 def UserExist(username):
-    count =  db.users.find({"Username":username}).count()
+    count =  db.users.count_documents({"Username": username})
     if count <= 0:
         return False
     else:
@@ -89,31 +89,6 @@ class RegisterAdmin(Resource):
         }
         return jsonify(retJson)
 
-class Register(Resource):
-    def post(self):
-        postedData = request.get_json()
-        username = postedData["username"]
-        password = postedData["password"]
-
-        if UserExist(username):
-            retJson = {
-                "status code": 301,
-                "message": "Invalid username"
-            }
-            return jsonify(retJson)
-        
-        hashed_pw = bcrypt.hashpw(password.encode('utf8'), bcrypt.gensalt())
-
-        users.insert({
-            "Username": username,
-            "Password": hashed_pw,
-            "Tokens": 6
-        })
-
-        retJson = {
-            "status code": 200,
-            "message": "You have successfully signed up to the API"
-        }
         return jsonify(retJson)
 
 class DetectSimilarity(Resource):
