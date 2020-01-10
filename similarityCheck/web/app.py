@@ -3,21 +3,42 @@ from flask_restful import Api, Resource
 from pymongo import MongoClient
 import bcrypt
 import spacy
+from pymongo.errors import ConnectionFailure
 
 
 app = Flask(__name__)
 api = Api(app)
 
-client = MongoClient("mongodb://:27017")
+
+client = MongoClient()
+try:
+   # The ismaster command is cheap and does not require auth.
+   client.admin.command('ismaster')
+   print("Server is connected")
+except ConnectionFailure:
+   print("Server not available")
+# try:
+#     client = MongoClient('mongodb://localhost:27017/')
+#     #client = pymongo.MongoClient("someInvalidURIOrNonExistantHost",
+#                                      #serverSelectionTimeoutMS=maxSevSelDelay)
+#     client.server_info() # force connection on a request as the
+#                          # connect=True parameter of MongoClient seems
+#                          # to be useless here 
+#     print("connected")
+# except ConnectionFailure.ServerSelectionTimeoutError as err:
+#     print(err)
+#client = MongoClient()
+#client = MongoClient('mongodb://localhost:27017/')
 db = client.SimDB
 users = db["Users"]
 
-# for admin
+#for admin
 admin = db["Admin"]
 
 
 def UserExist(username):
-    count =  db.users.count_documents({"Username": username})
+    #count =  users.count_documents({})
+    count =  users.count_documents({"Username": username})
     if count <= 0:
         return False
     else:
