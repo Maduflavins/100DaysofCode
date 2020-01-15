@@ -1,22 +1,29 @@
 from flask import Flask, jsonify, request
 from flask_restful import Api, Resource
 from pymongo import MongoClient
+#from flask_pymongo import PyMongo
+from bson.json_util import dumps
+from bson.objectid import ObjectId
+from werkzeug.security import generate_password_hash,check_password_hash
 import bcrypt
 import spacy
+#import PyMongo 
 from pymongo.errors import ConnectionFailure
 
 
 app = Flask(__name__)
 api = Api(app)
 
+app.secret_key = "secretkey"
 
-client = MongoClient()
-try:
-   # The ismaster command is cheap and does not require auth.
-   client.admin.command('ismaster')
-   print("Server is connected")
-except ConnectionFailure:
-   print("Server not available")
+#app.config["MONGO_URI"] = "mongodb://madu:bigdata123@ds141108.mlab.com:41108/db2020"
+#client = MongoClient()
+# try:
+#    # The ismaster command is cheap and does not require auth.
+#    client.admin.command('ismaster')
+#    print("Server is connected")
+# except ConnectionFailure:
+#    print("Server not available")
 # try:
 #     client = MongoClient('mongodb://localhost:27017/')
 #     #client = pymongo.MongoClient("someInvalidURIOrNonExistantHost",
@@ -27,13 +34,26 @@ except ConnectionFailure:
 #     print("connected")
 # except ConnectionFailure.ServerSelectionTimeoutError as err:
 #     print(err)
-#client = MongoClient()
-#client = MongoClient('mongodb://localhost:27017/')
-db = client.SimDB
-users = db["Users"]
+# try:
+#     client = MongoClient()
+#     client = MongoClient("mongodb://madu:bigdata123@ds141108.mlab.com:41108/db2020")
+#     print('connected')
+# except ConnectionFailure:
+#     print("Not connected")
+#db = client.SimDB#
 
-#for admin
-admin = db["Admin"]
+try:
+    client = MongoClient("mongodb://madu:bigdata123@ds141108.mlab.com:41108/db2020")
+    print("connetion runing")
+except ConnectionFailure:
+    print("Connection failed")
+# create database
+db = client["simcheckdb"]
+#user connection
+users = db["users"]
+
+#for admin collenction
+admin = db["admin"]
 
 
 def UserExist(username):
@@ -58,14 +78,14 @@ def verifyPw(username, password):
         return False
 
 def countTokens(username):
-    tokens = db.users.find({
+    tokens = users.find({
         "Username": username
     })[0]["Tokens"]
 
     return tokens
 
 def AdminExist(username):
-    if db.admin.find({"Username":username}).count() == 0:
+    if admin.find({"Username":username}).count() == 0:
         return False
     else:
         return True
@@ -74,7 +94,7 @@ def AdminExist(username):
 def verifyAdminPw(username, password):
     if not AdminExist:
         return False
-    hashed_pw = db.admin.find({
+    hashed_pw = admin.find({
         "Username" : username
     })[0]["Password"]
 
@@ -125,7 +145,7 @@ class Register(Resource):
             return jsonify(retJson)
         hashed_pw = bcrypt.hashpw(password.encode('utf8'), bcrypt.gensalt())
         users.inser({
-            "Username": username,
+            "Username":  username,
             "Password": hashed_pw
         })
         retJson = {
