@@ -34,10 +34,10 @@ public class Main {
         System.out.println("Plese enter number of times you want to check");
 
         int number = sc.nextInt();
-
+        //int small = Integer.MAX_VALUE;
         int smallestNumber = 2147483647;
 
-        for(int i=0; i<=number; i++ ){
+        for(int i=1; i<=number; i++ ){
             System.out.println("Please enter number");
             int newNumber = sc.nextInt();
             if(newNumber < smallestNumber){
