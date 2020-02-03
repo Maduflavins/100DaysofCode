@@ -1,0 +1,15 @@
+2. In your own words, describe what the statements continue and break do in loops.
+
+The break statement pulls out of a loop and moves to the next statement after the loop
+The continue statement skips the present iteration and continues on to the next after it
+
+3. Explain the difference between “is” and “==”. Give an example (different than that used
+in the chapter) that illustrates items that return False for “is” and True for “==”.
+	is compares the ID's of the operands
+	== comapres the values of the operands
+7. Consider the Python function range(a,b). Label these statements as True or
+False.
+ Value “a” is included in the range.	True
+ Value “b” is included in the range.	False
+
+What is an iterator? Give two examples of iterators.	For Loop and While Loop
