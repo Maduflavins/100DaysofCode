@@ -45,9 +45,9 @@ def verifyCredentials(username, password):
     if not UserExist(username):
         return generateReturnDictionary(301, "Invalid Username"), True
 
-        correct_pw = verifyPassword(username, password)
-        if not correct_pw:
-            return generateReturnDictionary(302, "Invalid Password"), True
+    correct_pw = verifyPassword(username, password)
+    if not correct_pw:
+        return generateReturnDictionary(302, "Invalid Password"), True
 
     return None, False
 
@@ -165,7 +165,7 @@ class Classify(Resource):
 
 
 
-class Refill(resource):
+class Refill(Resource):
     def post(self):
         postedData = request.get_json()
         username = postedData["username"]
