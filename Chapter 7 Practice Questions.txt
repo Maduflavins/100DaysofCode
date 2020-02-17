@@ -1,0 +1,124 @@
+1.	a.						arrays, collections
+	b.	related items, type		g	variables, type
+	c.	Enhanced for statement		g
+	d.	index				g
+	e.	Multi-dimentsional array	f	two-dimensional array
+	f.						for (double d : numbers)
+	g.	main mathod			b	an array of Strings called args
+	h.						args.length
+	i.	length of array				test
+	j.	ellipses			g
+
+2.	a.	False = Array stores different elements OF THE SAME TYPE		g
+	b.	False = Array element index should be an integer because it is precise		g
+	c.	False = When an element is called and used in a method, it's usage scope is limited in that method and the original value in the array is unchanged		g
+	d.	False = Command-line arguments are separated by space		g
+
+3.	a.	int[] ARRAY_SIZE = int[10];
+		final int ARRAY_SIZE = 10;
+	b.	double[] fractions = new double[ARRAY_SIZE];
+	c.	fractions[4]
+	d.	fractions[9] = 1.667
+	e.	fractions[6] = 3.333
+	f.	double total = 0.0;
+		for (int x = 0; x < fractions.length; x++)
+			total += fractions[x]
+
+4.	a.	int[][] table = new int[ARRAY_SIZE][ARRAY_SIZE]
+	b.	Nine
+	c.	for (int x = 0; x < table.length; x++)
+			for (int y = 0; y < table[x].length; y++)
+				table[x][y] = x + y;
+
+5.	a.	the variable ARRAY_SIZE had been set to 5. It couldn't be changed to 10
+		RE-assign correct value or create another variable
+	b.	b[i] = 1?
+		Error: Referencing an array element outside the bounds of the array (b[10]).
+		Correction: Change the <= operator to <.
+
+	c.	Element of a{{1, 2}, {3, 4}}
+		Error: Array indexing is performed incorrectly.
+		Correction: Change the statement to a[1][1] = 5;
+
+6.	a.	String, boolean, int, double
+		array name, array type, square brackets and array length, the new keyword
+	b	Declaring the array
+	c.	Roww and Column
+	d.	m rows, n columns and m*n elements
+	e.	d[3][5]
+
+7.	a.	False; instead we specify the array and the index of the array
+	b.	True; upon declaration, space is reserved or created for the array
+	c.	True; indicate the length of your array in square brackets next to the name of the array. p[100] reserves 100 space for indexes 0 - 99
+	d.	True; a for statement is needed to traverse and operate on the elements of the array, at least.
+	e.	True, to calculate elements of a 2-dim array, using nested for loops lets us traverse both loops by first going thru the rows in the first for statement and then going over the columns with the second for statement
+	
+
+8.	a.	Element 6 of array f = f[5]
+	b.	g[0] = 8
+		g[1] = 8
+		g[2] = 8
+		g[3] = 8
+		g[4] = 8
+		g[5] = 8
+
+	c.	double[] c = new double[100];
+		for (int i = 0; i < c.length; i++)
+			total += c[i];
+	d.	
+	e.	double[] e = new double[99];
+		double largest = 0.0;
+		double smallest = 0.0;
+		for (double number : e)
+			if (number < smallest)
+				smallest = number;
+			if (number > largest)
+				largest = number;
+
+9.	int[][] t = new int[2][3]
+	b.	2 rows	c.	3 columns	d.	6 elements
+	e.	All the elements in row 1 of t:
+		t[1][0]
+		t[1][1]
+		t[1][2]
+	f.	All the elements in column 2 of t:
+		t[0][2]
+		t[1][2]
+	g.	t[0][1] = 0;
+	h.	t[0][0] = 0;
+		t[0][1] = 0;
+		t[0][2] = 0;
+		...
+		t[1][1] = 0;
+		t[1][2] = 0;
+	i.	for (int i = 0; i < t.length; i++)
+			for (int j = 0; j < t[i].length; i++)
+				t[i][j] = 0;
+	j.	for (int i = 0; i < t.length; i++)
+			for (int j = 0; j < t[i].length; i++)
+				System.out.println("Enter value for row and column");
+				t[i][j] = input.nextInt();
+	k.	for (int i = 0; i < t.length; i++)
+			for (int j = 0; j < t[i].length; j++)
+				if (j < smallest)
+					smallest = j;
+		for (int[] num : t)
+			for (int x : num)
+				if (x < smallest)
+					smallest = x;
+	l.	printf("{%d, %d, %d}", t[0][0], t[0][1], t[0][2])
+	m.	colTotal = t[0][2] + t[1][2]
+	n.	for (int i = 0; i < t[0].length; i++)
+			System.out.printf("Column index %d", i);
+		for (int j = 0; j < t.length; j++)
+			System.out.printf("Row index %d", j);
+
+11.	a.	int[] counts = new int[10];
+		for (int i : counts)
+			counts[i] = 0;
+	b.	int[] bonus = new int[15];
+		for (int i : bonus)
+			bonus[i] += 1;
+	c.	int[] bestScore = new int[5];
+		for (int i : bestScore)
+			System.out.printf("%d ", bestScore[i])
