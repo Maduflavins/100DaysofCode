@@ -6,7 +6,10 @@ public class Card
 {
 	private final String face; // face of card ("Ace", "Deuce", ...)
 	private final String suit; // suit of card ("Hearts", "Diamonds", ...)
-
+	//public static void main (String[] args){
+	//Card myCard = new Card("Ace", "Heart");
+	//System.out.println(myCard);
+//}
 	//two-argument constructor initializes card's face and suit
 
 	public Card(String cardFace, String cardSuit)
@@ -20,4 +23,4 @@ public class Card
 	{
 		return face + " of " + suit;
 	}
-} // end class Car
+} // end class Card
