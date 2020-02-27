@@ -6,7 +6,7 @@ word_extra = len(word)
 
 for i in range(2, len(word), 3):
   #  if i % 3 ==2:
-   print (word[i], end='')
+   print (word[i], end = '')
 
 
 

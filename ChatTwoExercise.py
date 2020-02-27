@@ -20,7 +20,7 @@ for i in range(10, 1, -1):
 #    print(f'{number} x 9 + {i} = {ans}')
     print(f'{number:>10} x 9 + {i} = {ans}')"""
 
-"""for i in range(9, 1, -1):
+for i in range(9, 1, -1):
     number = ''
     for j in range(1, i):
         number += str(j)
@@ -29,6 +29,7 @@ for i in range(10, 1, -1):
     ans = number * 9 + i
     print(f'{number:>10} x 9 + {i} = {ans}')
 
+"""
 1 * 1 = 1
 11 * 11 = 121
 111 * 111 = 12321
@@ -39,4 +40,4 @@ for i in range(10, 1, -1):
 11111111 * 11111111 = 123456787654321
 111111111 * 111111111 = 12345678987654321"""
 
-for i in range(1, )
+#for i in range(1, ):

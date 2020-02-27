@@ -10,6 +10,8 @@ t = touchdowns * 20
 interception = float(input("Enter number of interceptions: "))
 i = 2.375 - (interception * 35)
 
+#average = int
+
 player_rating = ((c + y + t + i) / 6) * 100
 
 print("Player ratings is ", player_rating)
