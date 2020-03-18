@@ -1,0 +1,42 @@
+1.	ArithmeticException, NullPointerException, IllegalArgumentException, ArrayOutOfBoundsException, InputMismatchException	
+	WRONG
+	Memory exhaustion, array index out of bounds, arithmetic overflow, division by zero, invalid method parameters.
+
+2.	NOT ANSWERED
+	It’s unlikely that methods of classes in the Java API could perform error processing that would meet the unique needs of all users. i.e Java cannot 	solve all of out problems
+
+3.	Resource Leak is an occurrence when some or all resources used by a program are not returned to the system in memory 
+	CORRECT
+	
+4.	Control returns to the statement after the right parenthesis of the catch block. Or if there is a finally block (after either the catch blocks or 	the try block), then it executes and the program goes on from there
+	CORRECT
+
+5.	The catch block ensures that we deal with the exception thrown by the try block. The object reference of the type of exception thrown (placed in 	parenthesis after the catch keyword) gives us the opportunity to interact with the Exception class, using that variable eg getMessage, 	printStackTrace, getStackTrace
+	CORRECT
+
+6.	Usually errors cannot be easily recovered from. Therefore, readily conventional apps should not catch erros but should be able to catch exceptions
+	CORRECT
+
+7.	If no catch block matches the exception thrown, the exception becomes an uncaught exception and crashes the program by issuing a compilation error
+	CORRECT
+
+8.	If several catch blocks match the type of object thrown, the first exact-looking block after the try block executes (even if its superclass is 	declared in a catch block before it). If there is a superclass before the subclass, an error is issued. 
+	CORRECT
+
+9.	Specifying that a superclass Exception be the type in a catch block ensures that ALL the subclass exceptions of that superclass are caught
+	CORRECT
+
+10.	A finally block is used to ensure that we clean up after using the program execution. It basically contains resource-releasing code
+	CORRECT
+
+11.	When a catch block throws an exception, AFRAID TO COMPLETE IT THOUGH I WAS ON TRACK
+	INCOMPLETE
+	First, control passes to the finally block if there is one. Then the exception will be processed by a catch block (if one exists) associated with an 	enclosing try block (if one exists).
+
+12.	?
+	WRONG
+	It rethrows the exception for processing by an exception handler of an enclosing try statement, after the finally block of the current try statement 	executes.	
+
+13.	A local reference in a catch block that throws an exception is lostas it has become expired.
+	CORRECT
+	The reference goes out of scope. If the referenced object becomes unreachable, the object can be garbage collected.
